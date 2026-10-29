@@ -3,11 +3,13 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 
-swift build -c release
+# Universal binary: runs on Apple Silicon and Intel Macs.
+ARCHS=(--arch arm64 --arch x86_64)
+swift build -c release "${ARCHS[@]}"
 APP="build/PDF Text Editor.app"
 rm -rf "$APP"
 mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources"
-cp "$(swift build -c release --show-bin-path)/PDFTextEditor" "$APP/Contents/MacOS/"
+cp "$(swift build -c release "${ARCHS[@]}" --show-bin-path)/PDFTextEditor" "$APP/Contents/MacOS/"
 cp Resources/Info.plist "$APP/Contents/"
 cp Engine/pdftext_engine.py "$APP/Contents/Resources/"
 cp Resources/AppIcon.icns "$APP/Contents/Resources/"
