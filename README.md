@@ -5,15 +5,9 @@ exactly as it was: boxes, borders, table rules, shaded cells, images and fonts.
 
 ## Download
 
-Get `PDF-Text-Editor.zip` from the [latest release](https://github.com/romadinov/pdfeditor/releases/latest),
+Get `PDF-Text-Editor-<version>.zip` from the [latest release](https://github.com/romadinov/pdfeditor/releases/latest),
 unzip it and drag **PDF Text Editor** to Applications. It runs on macOS 14 or later, on Apple Silicon and Intel.
-
-The app is not notarized, so the first time you open it macOS will block it. Either go to
-**System Settings → Privacy & Security** and click **Open Anyway**, or run:
-
-```bash
-xattr -dr com.apple.quarantine "/Applications/PDF Text Editor.app"
-```
+The app is signed with a Developer ID and notarized by Apple, so it opens without warnings.
 
 Python 3 must be installed (`brew install python`, or from python.org).
 
@@ -21,6 +15,7 @@ Python 3 must be installed (`brew install python`, or from python.org).
 
 ```bash
 ./build.sh                          # builds "build/PDF Text Editor.app"
+scripts/release.sh                  # signed + notarized zip in build/release
 open "build/PDF Text Editor.app"
 ```
 
